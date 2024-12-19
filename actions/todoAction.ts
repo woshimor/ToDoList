@@ -19,18 +19,18 @@ export const addTodo = async (id: number, text: string) => {
 export const deleteTodo = async (id: number) => {
   await db.delete(todo).where(eq(todo.id, id));
 
-  revalidatePath("/dashboard");
+  revalidatePath("/");
 };
 
 export const toggleTodo = async (id: number) => {
   await db
     .update(todo)
     .set({
-      completed: not(todo.completed),
+      done: not(todo.done),
     })
     .where(eq(todo.id, id));
 
-  revalidatePath("/dashboard");
+  revalidatePath("/");
 };
 
 export const editTodo = async (id: number, text: string) => {
@@ -41,5 +41,5 @@ export const editTodo = async (id: number, text: string) => {
     })
     .where(eq(todo.id, id));
 
-  revalidatePath("/dashboard");
+  revalidatePath("/");
 };
